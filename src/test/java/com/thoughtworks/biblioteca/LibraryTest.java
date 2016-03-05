@@ -80,4 +80,11 @@ public class LibraryTest {
         books.add(book);
         assertTrue(library.hasBook(book));
     }
+
+    @Test
+    public void shouldAddBookToLibraryWhenUserReturns() {
+        Book returnedBook = mock(Book.class) ;
+        library.returnBook(returnedBook) ;
+        assertTrue(library.hasBook(returnedBook)) ;
+    }
 }

@@ -41,6 +41,7 @@ public class MenuTest {
         verify(printStream).println(contains("List Books"));
         verify(printStream).println(contains("Quit"));
         verify(printStream).println(contains("Checkout Book"));
+        verify(printStream).println(contains("Return Book"));
     }
 
     @Test

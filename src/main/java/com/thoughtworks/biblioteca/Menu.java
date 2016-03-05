@@ -45,7 +45,8 @@ public class Menu {
 
         printStream.println("1. List Books");
         printStream.println("2. Checkout Book");
-        printStream.println("3. Quit");
+        printStream.println("3. Return Book");
+        printStream.println("4. Quit");
     }
 
     private void chooseOption() throws IOException {

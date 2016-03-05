@@ -21,6 +21,10 @@ public class Library {
         }
     }
 
+    public void returnBook(Book book) {
+        books.add(book);
+    }
+
     public void printBooks() {
         if (books.isEmpty()) {
             printStream.println("Sorry, there are no books available");
