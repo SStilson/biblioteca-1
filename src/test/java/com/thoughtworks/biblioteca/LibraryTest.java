@@ -2,8 +2,8 @@ package com.thoughtworks.biblioteca;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.internal.matchers.LessThan;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -17,11 +17,13 @@ public class LibraryTest {
     private Collection<Book> books;
     private Book book;
     private Book book2;
+    private PrintStream printStream;
 
     @Before
     public void setUp(){
         books = new ArrayList<Book>();
-        library = new Library(books);
+        printStream = mock(PrintStream.class);
+        library = new Library(books, printStream);
 
         book = mock(Book.class);
         book2 = mock(Book.class);
@@ -56,5 +58,15 @@ public class LibraryTest {
         library.checkoutBook(book.getBookNumber());
 
         assertTrue(books.size() < bookListSize) ;
+    }
+
+    @Test
+    public void shouldDisplaySuccessMessageWhenUserChecksOutBook() {
+        books.add(book);
+        when(book.matchesBookNumber(1)).thenReturn(true);
+
+        library.checkoutBook(1);
+
+        verify(printStream).println("Thank you! Enjoy the book");
     }
 }

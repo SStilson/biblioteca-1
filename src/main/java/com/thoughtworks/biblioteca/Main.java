@@ -17,7 +17,7 @@ public class Main {
         bookList.add(new Book(printStream, "Book one", "author", "year", bookNumber));
 
         QuitCommand quitCommand = new QuitCommand(printStream);
-        Library library =  new Library(bookList);
+        Library library =  new Library(bookList, printStream);
         CheckoutMenu checkoutMenu = new CheckoutMenu(printStream, bufferedReader, library) ;
         Command[] commands = {new PrintBooksCommand(library), new CheckoutBookCommand(library, bookNumber, checkoutMenu), quitCommand};
 
