@@ -49,7 +49,7 @@ public class CheckoutMenuTest {
 
         checkoutMenu.startMenu();
 
-        verify(library).checkoutBook(1) ;
+        verify(library).checkoutBook(book) ;
     }
 
     @Test

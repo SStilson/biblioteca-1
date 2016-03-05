@@ -29,7 +29,8 @@ public class CheckoutMenu {
     private void chooseOption() throws IOException {
         String input = getValidBookNumberFromUser();
         Integer requestedBookNumber = Integer.parseInt(input);
-        library.checkoutBook(requestedBookNumber) ;
+        Book bookToCheckout = library.getBookFromBookNumber(requestedBookNumber) ;
+        library.checkoutBook(bookToCheckout) ;
     }
 
     private String getValidBookNumberFromUser() throws IOException {

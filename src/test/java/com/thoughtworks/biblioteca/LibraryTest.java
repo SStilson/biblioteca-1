@@ -55,7 +55,7 @@ public class LibraryTest {
         when(book.getBookNumber()).thenReturn(1) ;
         when(book.matchesBookNumber(1)).thenReturn(true) ;
 
-        library.checkoutBook(book.getBookNumber());
+        library.checkoutBook(book);
 
         assertTrue(books.size() < bookListSize) ;
     }
@@ -65,7 +65,7 @@ public class LibraryTest {
         books.add(book);
         when(book.matchesBookNumber(1)).thenReturn(true);
 
-        library.checkoutBook(1);
+        library.checkoutBook(book);
 
         verify(printStream).println("Thank you! Enjoy the book");
     }

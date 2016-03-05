@@ -14,25 +14,11 @@ public class Library {
         this.printStream = printStream;
     }
 
-    public void checkoutBook(Integer bookNumber) {
-        Book bookToCheckout = getBookFromBookNumber(bookNumber) ;
-        if (bookToCheckout != null) {
-            books.remove(bookToCheckout);
+    public void checkoutBook(Book book) {
+        if (book != null) {
+            books.remove(book);
             printStream.println("Thank you! Enjoy the book");
         }
-
-        //old code
-        /*
-        Book bookToRemove = null ;
-        for(Book book: books) {
-            if(book.matchesBookNumber(bookNumber)) {
-                bookToRemove = book ;
-            }
-        }
-        if (bookToRemove != null) {
-            books.remove(bookToRemove);
-            printStream.println("Thank you! Enjoy the book");
-        } */
     }
 
     public void printBooks() {
