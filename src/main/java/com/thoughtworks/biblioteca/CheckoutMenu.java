@@ -23,12 +23,24 @@ public class CheckoutMenu {
     }
 
     private void showMenu() {
-        printStream.println("Please enter the number of the book you would like to check out:");
+       printStream.println("Please enter the number of the book you would like to check out:");
     }
 
     private void chooseOption() throws IOException {
-        Integer requestedBookNumber = Integer.parseInt(bufferedReader.readLine());
+        String input = getValidBookNumberFromUser();
+        Integer requestedBookNumber = Integer.parseInt(input);
         library.checkoutBook(requestedBookNumber) ;
     }
 
+    private String getValidBookNumberFromUser() throws IOException {
+        String input = bufferedReader.readLine();
+        Book book = library.getBookFromBookNumber(Integer.parseInt(input)) ;
+        while(!library.hasBook(book)) {
+            printStream.println("That book is not available.");
+            input = bufferedReader.readLine();
+            book = library.getBookFromBookNumber(Integer.parseInt(input)) ;
+        }
+        return input;
+
+    }
 }

@@ -19,12 +19,14 @@ public class CheckoutMenuTest {
     private BufferedReader bufferedReader;
     private Library library ;
     private CheckoutMenu checkoutMenu;
+    private Book book;
 
     @Before
     public void setUp() throws IOException {
         printStream = mock(PrintStream.class);
         bufferedReader = mock(BufferedReader.class);
         library = mock(Library.class);
+        book = mock(Book.class);
 
         checkoutMenu = new CheckoutMenu(printStream, bufferedReader, library);
     }
@@ -32,6 +34,9 @@ public class CheckoutMenuTest {
     @Test
     public void shouldShowMenuOnStart() throws IOException {
         when(bufferedReader.readLine()).thenReturn("1");
+        when(library.getBookFromBookNumber(1)).thenReturn(book) ;
+        when(library.hasBook(book)).thenReturn(true) ;
+
         checkoutMenu.startMenu();
         verify(printStream).println(contains("Please enter the number of the book you would like to check out:"));
     }
@@ -39,8 +44,26 @@ public class CheckoutMenuTest {
     @Test
     public void shouldTellLibraryToCheckoutBookWhenUserRequests() throws IOException {
         when(bufferedReader.readLine()).thenReturn("1");
+        when(library.getBookFromBookNumber(1)).thenReturn(book) ;
+        when(library.hasBook(book)).thenReturn(true) ;
+
         checkoutMenu.startMenu();
+
         verify(library).checkoutBook(1) ;
+    }
+
+    @Test
+    public void shouldShowErrorMessageWhenBookIsNotAvailable() throws IOException {
+        when(bufferedReader.readLine()).thenReturn("1000", "1");
+
+        when(library.getBookFromBookNumber(1000)).thenReturn(null) ;
+        when(library.getBookFromBookNumber(1)).thenReturn(book) ;
+
+        when(library.hasBook(null)).thenReturn(false) ;
+        when(library.hasBook(book)).thenReturn(true) ;
+
+        checkoutMenu.startMenu();
+        verify(printStream).println(contains("That book is not available."));
     }
 
 

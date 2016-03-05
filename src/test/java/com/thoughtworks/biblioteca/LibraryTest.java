@@ -69,4 +69,15 @@ public class LibraryTest {
 
         verify(printStream).println("Thank you! Enjoy the book");
     }
+
+    @Test
+    public void shouldReturnFalseWhenBookIsNotInLibrary() {
+        assertFalse(library.hasBook(book));
+    }
+
+    @Test
+    public void shouldReturnTrueWhenBookIsInLibrary() {
+        books.add(book);
+        assertTrue(library.hasBook(book));
+    }
 }

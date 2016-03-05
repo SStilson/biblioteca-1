@@ -15,6 +15,14 @@ public class Library {
     }
 
     public void checkoutBook(Integer bookNumber) {
+        Book bookToCheckout = getBookFromBookNumber(bookNumber) ;
+        if (bookToCheckout != null) {
+            books.remove(bookToCheckout);
+            printStream.println("Thank you! Enjoy the book");
+        }
+
+        //old code
+        /*
         Book bookToRemove = null ;
         for(Book book: books) {
             if(book.matchesBookNumber(bookNumber)) {
@@ -24,7 +32,7 @@ public class Library {
         if (bookToRemove != null) {
             books.remove(bookToRemove);
             printStream.println("Thank you! Enjoy the book");
-        }
+        } */
     }
 
     public void printBooks() {
@@ -35,5 +43,21 @@ public class Library {
                 book.printBookDetails();
             }
         }
+    }
+
+    public boolean hasBook(Book book) {
+        if (books.contains(book)) {
+            return true;
+        }  else return false;
+    }
+
+    public Book getBookFromBookNumber(Integer bookNumber) {
+        Book matchingBook = null ;
+        for(Book book: books) {
+            if(book.matchesBookNumber(bookNumber)) {
+                matchingBook = book ;
+            }
+        }
+        return matchingBook ;
     }
 }
