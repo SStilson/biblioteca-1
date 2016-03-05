@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedHashMap;
 
 public class Main {
 
@@ -14,11 +13,12 @@ public class Main {
         Collection<Book> bookList = new ArrayList<Book>();
         PrintStream printStream = System.out;
         BufferedReader bufferedReader = new BufferedReader((new InputStreamReader(System.in)));
-        bookList.add(new Book(printStream, "Book one", "author", "year"));
+        Integer bookNumber = 1;
+        bookList.add(new Book(printStream, "Book one", "author", "year", bookNumber));
 
         QuitCommand quitCommand = new QuitCommand(printStream);
         Library library =  new Library(bookList);
-        Command[] commands = {new PrintBooksCommand(library), new CheckoutBookCommand(library), quitCommand};
+        Command[] commands = {new PrintBooksCommand(library), new CheckoutBookCommand(library, bookNumber), quitCommand};
 
 
         Menu menu = new Menu(printStream, bufferedReader, quitCommand, commands);

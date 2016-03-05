@@ -11,8 +11,12 @@ public class Library {
         this.books = books;
     }
 
-    public void checkoutBook() {
-
+    public void checkoutBook(Integer bookNumber) {
+        for(Book book: books) {
+            if(book.matchesBookNumber(bookNumber)) {
+                books.remove(book);
+            }
+        }
     }
 
     public void printBooks() {

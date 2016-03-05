@@ -2,6 +2,7 @@ package com.thoughtworks.biblioteca;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.internal.matchers.LessThan;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -9,6 +10,7 @@ import java.util.Collection;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class LibraryTest {
     private Library library;
@@ -44,6 +46,15 @@ public class LibraryTest {
 
     @Test
     public void shouldRemoveABookWhenCheckoutIsRun() {
+        books.add(book);
+        books.add(book2);
+        Integer bookListSize = books.size();
 
+        when(book.getBookNumber()).thenReturn(1) ;
+        when(book.matchesBookNumber(1)).thenReturn(true) ;
+
+        library.checkoutBook(book.getBookNumber());
+
+        assertTrue(books.size() < bookListSize) ;
     }
 }

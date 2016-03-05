@@ -5,7 +5,6 @@ import org.junit.Test;
 
 import java.io.PrintStream;
 
-import static org.junit.Assert.*;
 import static org.mockito.Matchers.contains;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -18,7 +17,7 @@ public class BookTest {
     @Before
     public void setUp(){
         printStream = mock(PrintStream.class);
-        book = new Book(printStream, "Book 1", "Author 1", "Year 1");
+        book = new Book(printStream, "Book 1", "Author 1", "Year 1", 1);
     }
 
     @Test
