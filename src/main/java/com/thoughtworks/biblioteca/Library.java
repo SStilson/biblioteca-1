@@ -12,10 +12,15 @@ public class Library {
     }
 
     public void checkoutBook(Integer bookNumber) {
+        Book bookToRemove = null ;
         for(Book book: books) {
             if(book.matchesBookNumber(bookNumber)) {
-                books.remove(book);
+                //books.remove(book);
+                bookToRemove = book ;
             }
+        }
+        if (bookToRemove != null) {
+            books.remove(bookToRemove);
         }
     }
 

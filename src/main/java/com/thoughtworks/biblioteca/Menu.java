@@ -8,8 +8,8 @@ import java.util.Map;
 
 public class Menu {
 
-    private PrintStream printStream;
-    private BufferedReader bufferedReader;
+    protected PrintStream printStream;
+    protected BufferedReader bufferedReader;
     private QuitCommand quitCommand;
     private Map<String, Command> menuOptionDispatch;
 
@@ -19,7 +19,6 @@ public class Menu {
         this.quitCommand = quitCommand;
 
         createCommandDispatch(commands);
-
     }
 
     private void createCommandDispatch(Command[] commands) {

@@ -18,8 +18,8 @@ public class Main {
 
         QuitCommand quitCommand = new QuitCommand(printStream);
         Library library =  new Library(bookList);
-        Command[] commands = {new PrintBooksCommand(library), new CheckoutBookCommand(library, bookNumber), quitCommand};
-
+        CheckoutMenu checkoutMenu = new CheckoutMenu(printStream, bufferedReader, library) ;
+        Command[] commands = {new PrintBooksCommand(library), new CheckoutBookCommand(library, bookNumber, checkoutMenu), quitCommand};
 
         Menu menu = new Menu(printStream, bufferedReader, quitCommand, commands);
 
